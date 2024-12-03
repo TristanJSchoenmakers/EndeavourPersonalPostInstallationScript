@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, lib, ... }:
 
 let
   secrets = if builtins.pathExists ./secrets.nix
@@ -129,6 +129,11 @@ in
     packages = with pkgs; [];
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-7.0.410"
+    "dotnet-sdk-wrapped-7.0.410"
+  ];
+
   environment.systemPackages = with pkgs; [
     # system
     # home-manager
@@ -159,10 +164,14 @@ in
     drill
     kubectl
     doctl
-    openlens
+    lens
     # Programming language build tools
     rustup
     gcc
+    # (with dotnetCorePackages; combinePackages [
+    #   sdk_8_0
+    #   sdk_9_0
+    # ])
     dotnet-sdk_8
     dotnet-aspnetcore_8
     nodejs_20
@@ -181,6 +190,49 @@ in
     zathura
     slack
   ];
+
+  environment.etc."hosts".text = lib.mkForce ''
+    127.0.0.1 localhost
+    127.0.0.1       youtube.com
+    127.0.0.1       www.youtube.com
+    127.0.0.1       9gag.com
+    127.0.0.1       www.9gag.com
+    
+    127.0.0.1       x.com
+    127.0.0.1       www.x.com
+    127.0.0.1       twitter.com
+    127.0.0.1       www.twitter.com
+    127.0.0.1       trends24.in
+    127.0.0.1       www.trends24.in
+    
+    127.0.0.1       ad.nl
+    127.0.0.1       www.ad.nl
+    127.0.0.1       nrc.nl
+    127.0.0.1       www.nrc.nl
+    127.0.0.1       nu.nl
+    127.0.0.1       www.nu.nl
+    127.0.0.1       nos.nl
+    127.0.0.1       www.nos.nl
+    127.0.0.1       telegraaf.nl
+    127.0.0.1       www.telegraaf.nl
+    127.0.0.1       trouw.nl
+    127.0.0.1       www.trouw.nl
+    127.0.0.1       volkskrant.nl
+    127.0.0.1       www.volkskrant.nl
+    127.0.0.1       peilingennederland.nl
+    127.0.0.1       www.peilingennederland.nl
+    
+    127.0.0.1       theguardian.com
+    127.0.0.1       www.theguardian.com
+    127.0.0.1       cnn.com
+    127.0.0.1       www.cnn.com
+    127.0.0.1       edition.cnn.com
+    127.0.0.1       www.edition.cnn.com
+    127.0.0.1       foxnews.com
+    127.0.0.1       www.foxnews.com
+    127.0.0.1       msnbc.com
+    127.0.0.1       www.msnbc.com
+  '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -201,5 +253,5 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
