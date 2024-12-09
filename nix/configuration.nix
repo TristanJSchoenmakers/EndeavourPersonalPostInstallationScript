@@ -86,16 +86,16 @@ in
     gnome-console
     gnome-text-editor
   ]) ++ (with pkgs.gnome; [
-    cheese      # photo booth
-    eog         # image viewer
-    epiphany    # web browser
-    simple-scan # document scanner
-    totem       # video player
-    yelp        # help viewer
-    evince      # document viewer
-    seahorse    # password manager
-    gnome-terminal gnome-logs gnome-characters gnome-clocks gnome-contacts
-    gnome-font-viewer gnome-calculator gnome-maps gnome-music gnome-weather 
+    # cheese      # photo booth
+    # eog         # image viewer
+    # epiphany    # web browser
+    # simple-scan # document scanner
+    # totem       # video player
+    # yelp        # help viewer
+    # evince      # document viewer
+    # seahorse    # password manager
+    # gnome-terminal gnome-logs gnome-characters gnome-clocks gnome-contacts
+    # gnome-font-viewer gnome-calculator gnome-maps gnome-music gnome-weather 
   ]);
 
   environment.sessionVariables.MYENV = secrets.environment;
