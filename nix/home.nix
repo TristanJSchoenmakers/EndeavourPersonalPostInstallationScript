@@ -13,6 +13,5 @@ in
 
   environment.systemPackages = with pkgs; [
     discord
-    qbittorrent-qt5
   ];
 }
