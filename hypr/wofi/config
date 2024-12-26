@@ -1,12 +1,12 @@
 style=/home/johndoe/.config/hypr/wofi/style.css
-xoffset=760
-yoffset=290
 show=drun
-width=400
-height=400
+width=500
+height=600
 always_parse_args=true
 show_all=true
 print_command=true
 layer=overlay
 insensitive=true
 prompt=
+no_actions=true
+allow_images=true
