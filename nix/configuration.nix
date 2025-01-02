@@ -82,9 +82,22 @@ in
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
     gnome-tour
+    gnome-calendar
+    gnome-characters
+    gnome-clocks
+    gnome-color-manager
+    gnome-contacts
     gnome-connections
     gnome-console
+    gnome-font-viewer
+    gnome-maps
     gnome-text-editor
+    gnome-weather
+    epiphany
+    simple-scan
+    totem
+    evince
+    seahorse
   ]) ++ (with pkgs.gnome; [
     # cheese      # photo booth
     # eog         # image viewer
