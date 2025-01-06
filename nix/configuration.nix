@@ -98,17 +98,6 @@ in
     totem
     evince
     seahorse
-  ]) ++ (with pkgs.gnome; [
-    # cheese      # photo booth
-    # eog         # image viewer
-    # epiphany    # web browser
-    # simple-scan # document scanner
-    # totem       # video player
-    # yelp        # help viewer
-    # evince      # document viewer
-    # seahorse    # password manager
-    # gnome-terminal gnome-logs gnome-characters gnome-clocks gnome-contacts
-    # gnome-font-viewer gnome-calculator gnome-maps gnome-music gnome-weather 
   ]);
 
   environment.sessionVariables.MYENV = secrets.environment;
@@ -181,13 +170,15 @@ in
     # Programming language build tools
     rustup
     gcc
-    # (with dotnetCorePackages; combinePackages [
-    #   sdk_8_0
-    #   sdk_9_0
-    # ])
-    dotnet-sdk_8
+    (with dotnetCorePackages; combinePackages [
+      sdk_8_0
+      sdk_9_0
+    ])
+    # dotnet-sdk_8
     dotnet-aspnetcore_8
+    dotnet-aspnetcore_9
     nodejs_20
+    azure-functions-core-tools
     # IDE & LSP's
     helix
     jetbrains.rider
