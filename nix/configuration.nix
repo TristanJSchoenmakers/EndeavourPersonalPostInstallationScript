@@ -49,6 +49,7 @@ in
     LC_TIME = "nl_NL.UTF-8";
   };
 
+  documentation.nixos.enable = false;
   nix.gc = {
     automatic = true;
     dates = "daily";
@@ -66,7 +67,19 @@ in
     pulse.enable = true;
   };
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.johndoe = {
+    isNormalUser = true;
+    description = "johndoe";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
+  };
+
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-sdk-7.0.410"
+    "dotnet-sdk-wrapped-7.0.410"
+  ];
 
   services.xserver = {
     enable = true;
@@ -77,27 +90,27 @@ in
     xkb.layout = "";
   };
 
-  documentation.nixos.enable = false;
-  programs.geary.enable = false;
   environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
+    epiphany
+    evince
     gnome-calendar
     gnome-characters
     gnome-clocks
     gnome-color-manager
-    gnome-contacts
     gnome-connections
     gnome-console
+    gnome-contacts
     gnome-font-viewer
     gnome-maps
+    gnome-music
+    gnome-photos
     gnome-text-editor
+    gnome-tour
     gnome-weather
-    epiphany
+    loupe
+    seahorse
     simple-scan
     totem
-    evince
-    seahorse
   ]);
 
   environment.sessionVariables.MYENV = secrets.environment;
@@ -123,25 +136,9 @@ in
     enableSSHSupport = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.johndoe = {
-    isNormalUser = true;
-    description = "johndoe";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
-  };
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "dotnet-sdk-7.0.410"
-    "dotnet-sdk-wrapped-7.0.410"
-  ];
-
   environment.systemPackages = with pkgs; [
-    # system
-    # home-manager
     # display
     hyprpaper
-    # hyprcursor
     hyprshot
       libnotify
       wl-clipboard
@@ -155,8 +152,6 @@ in
     # terminal, CLI & TUI's
     alacritty
     yazi
-    bat
-    glow
     git
     pinentry-curses
     cloudflared
@@ -170,15 +165,10 @@ in
     # Programming language build tools
     rustup
     gcc
-    (with dotnetCorePackages; combinePackages [
-      sdk_8_0
-      sdk_9_0
-    ])
-    # dotnet-sdk_8
-    dotnet-aspnetcore_8
+    dotnet-sdk_9
     dotnet-aspnetcore_9
-    nodejs_20
     azure-functions-core-tools
+    nodejs_20
     # IDE & LSP's
     helix
     jetbrains.rider

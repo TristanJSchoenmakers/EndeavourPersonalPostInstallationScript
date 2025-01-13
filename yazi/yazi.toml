@@ -15,11 +15,11 @@ cache_dir  = ""
 
 [opener]
 folder = [
-	{ run = 'open -R "$@"', display_name = "Reveal in Finder" },
-	{ run = '$EDITOR "$@"' },
+	{ run = 'echo placeholder' },
+	{ run = 'nautilus "$@" -w', orphan = true },
 ]
 archive = [
-	{ run = 'unar "$1"', display_name = "Extract here" },
+	{ run = 'file-roller "$1"' },
 ]
 text = [
 	{ run = '$EDITOR "$@"', block = true },
@@ -40,6 +40,9 @@ audio = [
 fallback = [
 	{ run = 'open "$@"', display_name = "Open" },
 	{ run = 'open -R "$@"', display_name = "Reveal in Finder" },
+]
+browser = [
+	{ run = 'brave "$@"' },
 ]
 
 [open]
@@ -62,6 +65,7 @@ rules = [
 	{ mime = "application/x-bzip2", use = "archive" },
 	{ mime = "application/x-7z-compressed", use = "archive" },
 	{ mime = "application/x-rar", use = "archive" },
+	{ mime = "application/pdf", use = "browser" },
 
 	{ mime = "*", use = "fallback" },
 ]
