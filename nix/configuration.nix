@@ -236,7 +236,35 @@ in
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
+  # List services that you want to enable
+  systemd.user.services.hyprpaper-rotate = {
+    description = "Rotate Hyprpaper wallpaper";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = ''
+        #!/usr/bin/env bash
+
+        # Pick a random wallpaper
+        WALLPAPER=$(find "$HOME/.config/hypr" -maxdepth 1 -type f -iname "*.jpeg" | shuf -n 1)
+        
+        # Set wallpaper as background
+        hyprctl hyprpaper preload "$WALLPAPER"
+        hyprctl hyprpaper wallpaper ",$WALLPAPER"
+      '';
+    };
+  };
+  systemd.user.timers.hyprpaper-rotate = {
+    description = "Rotate Hyprpaper wallpaper periodically";
+    wants = [ "timers.target" ];
+    partOf = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*:0/1"; # every 30 minutes
+      Persistent = true;
+      Unit = "hyprpaper-rotate.service";
+    };
+    wantedBy = [ "timers.target" ];
+    # unit = "hyprpaper-rotate.service";
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
