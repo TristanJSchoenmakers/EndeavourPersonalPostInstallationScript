@@ -165,7 +165,11 @@ in
     # Programming language build tools
     rustup
     gcc
-    dotnet-sdk_9
+    (with dotnetCorePackages; combinePackages [
+      sdk_8_0
+      sdk_9_0
+    ])
+    dotnet-aspnetcore_8
     dotnet-aspnetcore_9
     azure-functions-core-tools
     nodejs_20
