@@ -152,6 +152,7 @@ in
     # terminal, CLI & TUI's
     alacritty
     yazi
+    ueberzugpp
     git
     pinentry-curses
     cloudflared
