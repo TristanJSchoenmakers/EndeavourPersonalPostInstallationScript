@@ -10,6 +10,7 @@ alias c="clear"
 alias ld='sudo lazydocker'
 alias ls='ls --color=auto -a'
 alias gi='gitui'
+alias 'gitc'='git add . && git commit -S'
 
 # Path
 export PATH=~/.local/bin:$PATH
