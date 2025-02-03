@@ -163,7 +163,7 @@ in
     kubectl
     doctl
     lens
-    # Programming language build tools
+    # Build tools
     rustup
     gcc
     (with dotnetCorePackages; combinePackages [
@@ -174,6 +174,7 @@ in
     dotnet-aspnetcore_9
     azure-functions-core-tools
     nodejs_20
+    mdbook
     # IDE & LSP's
     helix
     jetbrains.rider
