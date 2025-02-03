@@ -9,7 +9,7 @@ alias blui='bluetoothctl'
 alias c="clear"
 alias ld='sudo lazydocker'
 alias ls='ls --color=auto -a'
-alias code='code --extensions-dir ~/.cache/VsCode/extensions --user-data-dir ~/.cache/VsCode/UserDataDir'
+alias gi='gitui'
 
 # Path
 export PATH=~/.local/bin:$PATH
