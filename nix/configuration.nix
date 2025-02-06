@@ -181,6 +181,7 @@ in
     vscode-langservers-extracted
     clang-tools
     nil
+    dprint
     markdown-oxide
     # applications
     brave

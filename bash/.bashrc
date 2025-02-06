@@ -16,7 +16,7 @@ alias 'gitc'='git add . && git commit -S'
 export PATH=~/.local/bin:$PATH
 export PATH=~/.local/share/cargo/bin:$PATH
 
-# Default Proframs
+# Default Programs
 export VISUAL=hx
 export EDITOR=hx
 export BROWSER=brave

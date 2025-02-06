@@ -6,6 +6,14 @@ let
               else {};
 in
 {
+  environment.systemPackages = with pkgs; [
+    android-studio
+    android-tools
+    zulu17
+  ];
+
+  programs.nix-ld.enable = true;
+  
   users.users.cloudflared = {
     group = "cloudflared";
     isSystemUser = true;
